@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Todo</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="https://kit.fontawesome.com/38e66b1324.js" crossorigin="anonymous"></script>
+  </head>
+  <body>
+    <main>
+      <div id="message-container-todo" class="message-container-todo"></div>
+      <!-- top image section -->
+      <section class="top-image-wrapper col-12">
+        <div class="top-image-text-wrapper">
+          <h2>To Do</h2>
+          <h3 id="weather-container"></h3>
+          <p id="date-area">
+            <!-- render from js -->
+          </p>
+        </div>
+      </section>
+      <!-- all posts section -->
+      <section class="post-section col-8">
+        <h2></h2>
+        <div id="post-wrapper">
+          <!-- render from js -->
+        </div>
+      </section> 
+      <!-- new post section-->
+      <section class="new-post-section">
+        <!-- the new post button -->
+        <button id="new-todo-btn" class="new-todo-btn">ADD NEW TODO</button>
+
+        <!-- the new post overlay incl. the form-->
+        <div id="new-todo-overlay">  
+          <div class="new-post-modal col-6">
+            <div class="new-post-modal-header">
+              <h2>New Todo</h2>
+              <!--span below triggs the function closeNewTodoModal-->
+              <span id="closing-btn" onclick="closeNewTodoModal()"><i class="fas fa-times"></i></span>
+            </div> 
+            <!--the new post form start-->
+            <form class="form-new-post" onsubmit="newTodo(); return false;"><!--on submit -->
+              
+              <input id="postSubject" type="text" placeholder="Title"/>
+              <textarea id="postMessage" placeholder="Comment..." required></textarea>
+              <input id="postDate" type="date" placeholder="Date"/>
+
+              <div class="form-btn-wrapper">
+                <button class="form-btn" type="reset">Reset <i class="far fa-trash-alt"></i></button>
+                <!--button below triggs the function postPost -->
+                <button id="post-post" class="form-btn" type="submit">Add <i class="fas fa-plus"></i></button>
+              </div>
+
+            </form>
+          </div>
+        </div>
+      </section>
+ <div id="todo-update-container">
+ 
+</div>
+      <!-- feedback section -->
+      <section class="feedback-section">
+        <!-- the feedback button triggs the function openFeedbackModal-->
+        <span id="feedback-btn" onclick="openFeedbackModal()">Feedback</span>
+
+        <!-- the feedback overlay incl. the form-->
+        <div id="feedback-overlay">
+          <div id="feedback-modal" class="col-6">
+            <div class="feedback-modal-header">
+              <h2>Send us feedback</h2>   
+              <span onclick="closeFeedbackModal()"id="closing-btn"><i class="fas fa-times"></i></span>
+            </div>
+            <!-- feedback form -->
+            <form class="form-feedback" onsubmit="openMessageConfirmation(); sendFeedback(); return false;"><!--return false = the page doesn´t refresh on submit-->
+              <input id="name" type ="text" placeholder="Your name*" required/>
+              <input id="email" type ="email" placeholder="Your email*" required/>
+              <textarea id="message" placeholder="Write your thoughts*" required></textarea>
+              <div class="form-btn-wrapper">
+                <button class="form-btn" type="reset">Reset <i class="far fa-trash-alt"></i></button>
+                <button id="post-feedback" class="form-btn" type="submit">Send your feedback <i class="far fa-paper-plane"></i></button>
+              </div>
+            </form>
+          </div>
+        
+          <!-- feedback confirmation modal-->
+          <div id="feedback-confirmation-modal" class="col-6">
+            <div class="feedback-confirmation-modal-header">
+              <!--span below triggs the function closeMessageConfirmation-->
+              <span id="closing-btn" onclick="closeMessageConfirmation()"><i class="fas fa-times"></i></span>
+            </div>
+            <div id="feedback-confirmation-modal-body">
+              <button class="modal-loader"><i class="fa fa-spinner fa-spin"></i></button>
+              <!-- render from js -->
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+    </main>
+    <script src="./app2.js" async defer></script>
+  </body>
+</html>
