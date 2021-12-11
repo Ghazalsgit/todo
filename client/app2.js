@@ -123,7 +123,7 @@ const getTodos = async () => {
          <br><label>Title</label><br>
          <input id="update-todo-'${todo._id}'-title" placeholder="${todo.title}">
          <br><label>Comment</label><br>
-         <input style='height:90px'id="update-todo-'${todo._id}'-content" placeholder="${todo.content}">
+         <textarea id="update-todo-'${todo._id}'-content" placeholder="${todo.content}"></textarea>
          <br><label>Date</label><br>
          <input type="date" id="update-todo-'${todo._id}'-date" placeholder="${todo.date}"/>
          <button class='done-btn' type="submit">Update</button>
