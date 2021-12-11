@@ -121,11 +121,11 @@ const getTodos = async () => {
          <div style='display:none' id="update-todo-container-${todo._id}" class="update-todo-container">
          <form onsubmit="updateTodo('${todo._id}'); return false;">
          <br><label>Title</label><br>
-         <input id="update-todo-'${todo._id}'-title" placeholder="${todo.title}">
+         <input id="update-todo-'${todo._id}'-title">
          <br><label>Comment</label><br>
-         <textarea id="update-todo-'${todo._id}'-content" placeholder="${todo.content}"></textarea>
+         <textarea id="update-todo-'${todo._id}'-content"></textarea>
          <br><label>Date</label><br>
-         <input type="date" id="update-todo-'${todo._id}'-date" placeholder="${todo.date}"/>
+         <input type="date" id="update-todo-'${todo._id}'-date"/>
          <button class='done-btn' type="submit">Update</button>
          </form>
         </div>
@@ -181,14 +181,29 @@ const newTodo = async () => {
 
 // when clicked on update/edit the content inside the post/todo is changed 
 const openUpdateTodo = (id) => {
-  document.getElementById(`update-todo-container-${id}`).style.display = "flex"
-  document.getElementById(`h3-el-${id}`).style.display = "none"
-  document.getElementById(`p-el-${id}`).style.display = "none"
-  document.getElementById(`todo-done-${id}`).style.display = "none"
-  document.getElementById(`h4-el-${id}`).style.display = "none"
-  document.getElementById(`post-btn-2-${id}`).style.display = "none"
-  document.getElementById(`post-btn-3-${id}`).style.display = "flex" 
-  document.getElementById(`h-el-${id}`).style.display = "flex"
+  const container = document.getElementById(`update-todo-container-${id}`)
+  container.style.display = "flex"
+  const h3 = document.getElementById(`h3-el-${id}`)
+  h3.style.display = "none"
+  const p = document.getElementById(`p-el-${id}`)
+  p.style.display = "none"
+  const todo_done = document.getElementById(`todo-done-${id}`)
+  todo_done.style.display = "none"
+  const h4 = document.getElementById(`h4-el-${id}`)
+  h4.style.display = "none"
+  const btn_2 = document.getElementById(`post-btn-2-${id}`)
+  btn_2.style.display = "none"
+  const btn_3 = document.getElementById(`post-btn-3-${id}`)
+  btn_3.style.display = "flex" 
+  const h = document.getElementById(`h-el-${id}`)
+  h.style.display = "flex"
+
+/*setting the value(text inside) of the input fields the same as the value/innerHTML 
+of the todo-post */
+  document.getElementById(`update-todo-'${id}'-title`).value = h4.innerHTML
+  document.getElementById(`update-todo-'${id}'-content`).value = p.innerHTML
+  document.getElementById(`update-todo-'${id}'-date`).value = h3.innerHTML
+  
 }
 
 //FUNCTION - UPDATE

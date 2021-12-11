@@ -244,7 +244,8 @@ text-align: center;
 z-index: 1;
 cursor: pointer;
 animation-name: popup;
-animation-duration: 2s;
+animation-duration: 3s;
+
 animation-iteration-count: infinite;
 }
 @keyframes popup {
@@ -510,14 +511,13 @@ margin: 10px 0 0 0;
   width: 50%;
   height: 30px;
   color: black;
-  background-color: #FDF6F0;
+  /*background-color: #FDF6F0;*/
   z-index: 10000;
   display: none;
   justify-content: center;
   align-items: center;
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px; 
-
   animation: fadeIn 2s;
 }
 
