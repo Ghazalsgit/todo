@@ -74,7 +74,7 @@ const showResponseMessage = (message) => {
 
 
 
-//response message                                                      //------ DEN HÄR FÅR VI JU GÖRA ROLIGARE :)
+//response message                                                   
 // const showResponseMessage = (message) => {
 //   alert(message);
   /* 

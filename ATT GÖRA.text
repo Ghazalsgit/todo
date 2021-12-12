@@ -9,10 +9,6 @@
   - Lägg in loaders vid request 
   
 
- Påminnelse: man kan endast uppdatera om man fyller i alla 3 rutorna det behöver vi fixa!!
- 
-
-
   KVAR PÅ UPPGIFTEN
   - (Skapa eget API)
   - (Använd Node.js)
@@ -26,9 +22,6 @@
   lyfter in sista paketen dotenv, nodemailer, nodemailer-sendgrid
   skrivit servern
   skapat env fil
-
-
-
 
   ALLRA SIST!
   Radera denna fil ;)
