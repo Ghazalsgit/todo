@@ -93,7 +93,7 @@ const getTodos = async () => {
   //collects the data in our array
   todos = data.todos;
   //render the data in html
-  document.querySelector("#post-wrapper").innerHTML = todos             //------ ÄNDRA NAMN PÅ #!!!
+  document.querySelector("#post-wrapper").innerHTML = todos.sort((todo,b)=> (todo.date > b.date ? 1 : -1)) //sort() sorts the todos based on the date
     //mapping out every todo
     .map(                                                             
       (todo) =>
@@ -123,18 +123,20 @@ const getTodos = async () => {
          <br><label>Title</label><br>
          <input id="update-todo-'${todo._id}'-title">
          <br><label>Comment</label><br>
-         <textarea id="update-todo-'${todo._id}'-content"></textarea>
+         <textarea style="min-height:70px" id="update-todo-'${todo._id}'-content"></textarea>
          <br><label>Date</label><br>
          <input type="date" id="update-todo-'${todo._id}'-date"/>
          <button class='done-btn' type="submit">Update</button>
          </form>
         </div>
         </div>`
-    ) //the form above this is the form for update that is not displayed until the edit-button is clicked on
+    )//the form above this is the form for update that is not displayed until the edit-button is clicked on
     //making the array look like a list without the ,
     .join("");
+   console.log(todos)
+  
 };
-
+//.sort((todo,b)=> (todo.date > b.date ? 1 : -1))
 
 //FUNCTION - OPEN TODO MODAL
 const openNewTodoModal = () => {
@@ -452,7 +454,7 @@ async function fetchWeather(lat, lon, location) {
   const res = await fetch(`http://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=943e2490589eaf517b3267f3b3bd80fc&units=metric`);
   const data = await res.json();
   const deg = Math.floor(data.main.temp); //returns the largest integer less than or equal to a given number
-  document.getElementById("weather-container").innerHTML = `the outside temperature in ${location} is ${deg} °C`;
+  document.getElementById("weather-container").innerHTML = `Location: ${location} <br> Temperature: ${deg} °C`;
 }
 
 getIpAddress();

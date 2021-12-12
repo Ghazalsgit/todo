@@ -11,10 +11,9 @@
 *********************************************************************************
 */
 
-
-
 /********** GENERAL STYLING **********/
 
+/* Nya fonten som jag använder */
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap');
 
 * {
@@ -70,13 +69,11 @@ padding: 15px 0 15px 15px;
 margin-top: 10px;
 }
 
-
 @media screen and (min-width:800px){
 .top-image-text-wrapper {
   background: linear-gradient(to top,  rgba(255, 255, 255, 1) 0%, rgba(233, 233, 233, 0) 100%);
 }
 }
-
 main {
 display: flex;
 flex-direction: column;
@@ -193,7 +190,7 @@ border-color: black transparent transparent transparent;
 }
 .post-txt { /*varje posts text*/
 padding: 10px 0;
-word-break: break-all;
+word-break:normal;
 resize: both;
 
 }
@@ -212,6 +209,38 @@ resize: both;
   justify-content: space-around;
 }
 }
+/* The button for "Done"*/
+.done-btn{
+  width: 70px;
+  height: 35px;
+  margin-top:1.2em;
+  border: 1px solid white;
+  border-radius: 6px;
+  background-color: #F5C6AA; 
+  font-weight: 600;
+}
+/* Hover the button for "Done"*/
+.done-btn:hover{
+  border: 1px solid white;
+  border-radius: 6px;
+  background-color: black;
+  color: white;
+
+}
+/******************** UPDATE TODO CONTAINER *****************/
+.update-todo-container{
+ flex-direction: column;
+ justify-content: space-evenly;
+ align-items: center;
+}
+.content-container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+
 /**************** SHOWING POSTS STARTS ****************/
 
 
@@ -504,13 +533,16 @@ margin: 10px 0 0 0;
 }
 /**************** FEEDBACK SECTION END ****************/
 
-#message-container-todo{
+
+/**************** CONFIRMATION/ERROR MESSAGE ****************/
+
+
+#message-container-todo{ 
   position: fixed;
   top: 0;
   right: 25%;
   width: 50%;
   height: 30px;
-  color: black;
   /*background-color: #FDF6F0;*/
   z-index: 10000;
   display: none;
@@ -520,14 +552,11 @@ margin: 10px 0 0 0;
   border-bottom-right-radius: 5px; 
   animation: fadeIn 2s;
 }
-
-
+/*Animation for the message*/
 @keyframes fadeIn {
   0% {opacity:0;}
   100% {opacity:1;}
 }
-
-
 .fade-out {
   animation: fadeOut ease 8s;
   -webkit-animation: fadeOut ease 8s;
@@ -544,34 +573,3 @@ margin: 10px 0 0 0;
   }
 }
 
-
-.done-btn{
-  width: 70px;
-  height: 35px;
-  margin-top:1.2em;
-  border: 1px solid white;
-  border-radius: 6px;
-  background-color: #F5C6AA; 
-  font-weight: 600;
-}
-.done-btn:hover{
-  border: 1px solid white;
-  border-radius: 6px;
-  background-color: black;
-  color: white;
-
-}
-.update-todo-container{
- flex-direction: column;
- justify-content: space-evenly;
- align-items: center;
- z-index: 1000;
-}
-.content-container{
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  overflow:scroll;
-}
