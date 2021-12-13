@@ -34,6 +34,7 @@ const showResponseMessage = (message) => {
 
 //FUNCTION - GET ALL TODOS
 const getTodos = async (todos) => {
+  console.log("Renderar ut på nytt med getTodos")
   //creates a variable for the response
   const res = await fetch(`${rootUrl}gettodos`);
   //takes the response that we get and converts it to js object
@@ -286,35 +287,34 @@ window.addEventListener("load", () => {
 //FUNCTION - MARKED TODO DONE
 //the done-button does some changes to the design when clicked on and takes back the changes when clicked again
 const todoDone = async (id, title, content, date, done) => {  
-  //  if (!done){
-  //    done = true;
-  //  }else {
-  //    done = false;
-  //  }
-  console.log("vad är done:" + done)
-     switch (done){
-     case !done : done = true;
-     break;
-     case done : done = false;
-     break;
-     default: console.log("hej")
-   } 
+  let doneTodo;
+  if (done === "false") {
+    console.log("if done = " + done)
+    doneTodo = {    
+      title,
+      content,
+      date,
+      done: true             
+    };
+  } if (done === "true") {
+    console.log("true")
+    doneTodo = {    
+      title,
+      content,
+      date,
+      done: false             
+    };
+  }
 
- const todo = {    
-  title,
-  content,
-  date,
-  done,              
-};
-const res = await fetch(`${rootUrl}updatedone/${id}`, {
-  method: "put",
-  body: JSON.stringify(todo),
-  headers: requestHeaders,
-});
-const data = await res.json();
-//once again updating the feed with all the new todos
-getTodos();
-showResponseMessage(data.message);
+  const res = await fetch(`${rootUrl}updatedone/${id}`, {
+    method: "put",
+    body: JSON.stringify(doneTodo),
+    headers: requestHeaders,
+  });
+  const data = await res.json();
+  //once again updating the feed with all the new todos
+  getTodos();
+  showResponseMessage(data.message);
 }
 
 /********************* POST SECTION ENDS *********************/

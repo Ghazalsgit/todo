@@ -213,11 +213,11 @@ form button:hover {
 }
 
 @media screen and (min-width:800px){
-  .post { /*hela varje post*/
+  .post, .post2 { /*hela varje post*/                                         /**************************** LÄGG IN .post2 här med*/
     width: 300px;
     min-height: 230px;
   }
-  #post-wrapper { /*wrapper för alla posts*/
+  #post-wrapper, #post-wrapper2 { /*wrapper för alla posts*/                /**************************** LÄGG IN #post-wrapper2 här med*/
     margin: 0;
     justify-content: space-around;
   }
