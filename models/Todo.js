@@ -19,9 +19,3 @@ required: true
 })
 //exporting to make the schema public and accessible ouside of this module
 module.exports = mongoose.model('Todo',TodoSchema);
-
-
-/*
-    Det kanske inte är ett date now som borde vara här utan att man fyller i ett datum det ska slutföras
-    Och sedan sortera posterna utefter när de ska göras, om det går.....?
-*/

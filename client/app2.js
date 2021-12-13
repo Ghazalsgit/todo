@@ -5,7 +5,7 @@ const getTheDay = () => {
   let date = new Date().getDate();
   let month = new Date().getMonth();
   let year = new Date().getFullYear();
-  console.log("Renderas från Date() :", date, month, year);
+
   let fullDate = ""; //converting the numbers returned to strings with a switch statement
   switch (month) {
     case 0: month = "January"
@@ -85,7 +85,7 @@ const showResponseMessage = (message) => {
   */
 //};
 //FUNCTION - GET ALL TODOS
-const getTodos = async () => {
+const getTodos = async (todos) => {
   //creates a variable for the response
   const res = await fetch(`${rootUrl}gettodos`);
   //takes the response that we get and converts it to js object
@@ -132,9 +132,7 @@ const getTodos = async () => {
         </div>`
     )//the form above this is the form for update that is not displayed until the edit-button is clicked on
     //making the array look like a list without the ,
-    .join("");
-   console.log(todos)
-  
+    .join(""); 
 };
 //.sort((todo,b)=> (todo.date > b.date ? 1 : -1))
 
@@ -172,7 +170,7 @@ const newTodo = async () => {
   const data = await res.json();
   //updating with all the new todos
   getTodos();
-  showResponseMessage(data.message);                //------ FRÅGAN ÄR OM VI SKA ANVÄNDA OSS AV DENNA PÅ DET HÄR SÄTTET????
+  showResponseMessage(data.message);             
  // emptying the input fields after the todo is created 
   document.querySelector("#postSubject").value = "";        
   document.querySelector("#postMessage").value = "";      
@@ -199,19 +197,16 @@ const openUpdateTodo = (id) => {
   btn_3.style.display = "flex" 
   const h = document.getElementById(`h-el-${id}`)
   h.style.display = "flex"
-
 /*setting the value(text inside) of the input fields the same as the value/innerHTML 
 of the todo-post */
   document.getElementById(`update-todo-'${id}'-title`).value = h4.innerHTML
   document.getElementById(`update-todo-'${id}'-content`).value = p.innerHTML
-  document.getElementById(`update-todo-'${id}'-date`).value = h3.innerHTML
-  
+  document.getElementById(`update-todo-'${id}'-date`).value = h3.innerHTML 
 }
 
 //FUNCTION - UPDATE
 //This function takes a parameter (id) that is collected from the onclick-event
 const updateTodo = async (id) => {
-
   //getting the values of input fields and setting them to different variables
   const title = document.getElementById(`update-todo-'${id}'-title`).value;           
   const content = document.getElementById(`update-todo-'${id}'-content`).value; 
@@ -279,17 +274,16 @@ window.addEventListener("load", () => {
 
 //the done-button does some changes to the design when clicked on and takes back the changes when clicked again
 let done = false;
-const todoDone = (id) => {
-  if (done === false){
+const todoDone = (id) => { 
+  if (!done){
   document.getElementById(`doneTodo${id}`).style.opacity = "0.6";
   document.getElementById(`todo-done-${id}`).innerHTML = `<p>Undo</p>`;
   document.getElementById(`h3-el-${id}`).style.textDecoration = "line-through";
   document.getElementById(`p-el-${id}`).style.textDecoration = "line-through";
   document.getElementById(`h4-el-${id}`).style.textDecoration = "line-through";
-
   done = true;
 }
-  else if(done === true){
+  else{
   document.getElementById(`doneTodo${id}`).style.opacity = "1.0";
   document.getElementById(`todo-done-${id}`).innerHTML = `<p>Done</p>`;
   document.getElementById(`h3-el-${id}`).style.textDecoration = "none"
@@ -445,7 +439,6 @@ const getIpAddress = async () => {
   const lat = data.location.latitude;
   const lon = data.location.longitude;
   const location = data.location.city;
-  console.log(data.location);
   fetchWeather(lat, lon, location)
 };
 /* the arguments are lifted in fron the function above. Fetching the weather for the users location
