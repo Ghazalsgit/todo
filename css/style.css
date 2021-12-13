@@ -75,7 +75,7 @@ main {
   margin: 3% 5%;
   font-size: 22px;
 }
-#post-wrapper { /*wrapper för alla posts*/
+#post-wrapper, #post-wrapper2 { /*wrapper för alla posts*/
   display: flex;
   justify-content: center;
   align-items: flex-start;
@@ -93,6 +93,18 @@ main {
   flex-direction: column;
   justify-content: space-evenly;
   margin: 3px;
+}
+.post2{
+  width: 100%;
+  padding: 10px;
+  background-color: red;
+  border: 1px solid silver;
+  border-radius: 10px;
+  box-shadow: rgba(17, 17, 26, 0.1) 0px 0px 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  margin: 3px; 
 }
 .post-done-mode{
   opacity: 0.6;

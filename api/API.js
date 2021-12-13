@@ -23,6 +23,7 @@ router.post("/newtodo", (req, res) => {
       title: req.body.title,
       content: req.body.content, 
       date: req.body.date,
+      done: req.body.done,
   });
   //.save(1 argument: callback for error)
   newTodo.save((err) => {
@@ -85,6 +86,7 @@ router.put("/updatetodo/:id", (req, res) => {
     title: req.body.title, 
     content: req.body.content,
     date: req.body.date,
+    done: req.body.done,
   }, 
     (err) => {
     if (err) {
@@ -131,6 +133,40 @@ router.delete("/deletetodo/:id", (req, res) => {
             msgError: false,
           },
         })
+    }
+  });
+});
+
+router.put("/updatedone/:id", (req, res) => {
+  //.find (takes 3 arguments) 
+    // argument 1: id of the todo that is being edited/updated. using params to get it!
+    // argument 2: an object representing the fields that can be updated
+    // argument 3: callback function with error as a parameter
+  Todo.findByIdAndUpdate(req.params.id, {
+    title: req.body.title, 
+    content: req.body.content,
+    date: req.body.date,
+    done: req.body.done, //DENNA ÄR NY!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  }, 
+    (err) => {
+    if (err) {
+      res
+        .status(500)
+        .json({
+          message: {
+            msgBody: "An error occured updating todo", 
+            msgError: true,
+          },
+        });
+    } else {
+      res
+        .status(200)
+        .json({
+          message: {
+            msgBody: "Todo successfully update", 
+            msgError: false,
+          },
+        });
     }
   });
 });

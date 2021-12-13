@@ -40,8 +40,18 @@ const getTodos = async (todos) => {
   const data = await res.json();
   //collects the data in our array
   todos = data.todos;
+
+  /******* NYTT ************/ 
+  const todosDone = todos.filter(todo => todo.done === true);
+  const todosNotDone = todos.filter(todo => todo.done === false);
+  console.log("Done")
+  console.log(todosDone)
+  console.log("Not done")
+  console.log(todosNotDone)
+
+
   //render the data in html
-  document.querySelector("#post-wrapper").innerHTML = todos.sort((todo,b)=> (todo.date > b.date ? 1 : -1)) //sort() sorts the todos based on the date
+  document.querySelector("#post-wrapper").innerHTML = todosNotDone.sort((todo,b)=> (todo.date > b.date ? 1 : -1)) //sort() sorts the todos based on the date
     //mapping out every todo
     .map(                                                             
       (todo) =>
@@ -64,7 +74,7 @@ const getTodos = async (todos) => {
           </div>
           <div class="content-container">
           <p id="p-el-${todo._id}" style="height:95px;" class="post-txt">${todo.content}</p>
-          <button class="done-btn" id="todo-done-${todo._id}" onclick="todoDone('${todo._id}')">Done</button>
+          <button class="done-btn" id="todo-done-${todo._id}" onclick="todoDone('${todo._id}','${todo.title}','${todo.content}','${todo.date}','${todo.done}')">Done</button>
           </div>
          <div style='display:none' id="update-todo-container-${todo._id}" class="update-todo-container">
          <form onsubmit="updateTodo('${todo._id}'); return false;">
@@ -81,6 +91,52 @@ const getTodos = async (todos) => {
     )//the form above this is the form for update that is not displayed until the edit-button is clicked on
     //making the array look like a list without the ,
     .join(""); 
+
+  /**************** NYTT NEDAN *****************/ 
+  /* Mappar ut de todos som filtrerats till todosDone i en egen wrapper */
+
+  //render the data in html
+  document.querySelector("#post-wrapper2").innerHTML = todosDone.sort((todo,b)=> (todo.date > b.date ? 1 : -1)) //sort() sorts the todos based on the date
+    //mapping out every todo
+    .map(                                                             
+      (todo) =>
+        /*This mapping first renders the content in each todo-post and laso renders the form for update.
+        Every element has its own id so that on every click only the specific todo is updated or deleted.
+        the id is sent to the function as an argument*/
+        //elements for the todo-post
+        `<div class="post2" id="doneTodo${todo._id}">
+          <div class="post-header">
+          <div>
+            <h3 class='word-break' style="display:none;" id="h-el-${todo._id}">Update</h3>
+            <h3 class='word-break' id="h3-el-${todo._id}">${todo.date}</h3>
+            <h4 class='word-break' id="h4-el-${todo._id}">${todo.title}</h4>
+            </div>
+            <div class="post-btn-wrapper">
+              <button id='post-btn-1-${todo._id}' class="post-btn" onclick="deleteTodo('${todo._id}')"><i class="fas fa-trash-alt"><span>Delete</span></i></button>
+              <button id='post-btn-2-${todo._id}' class="post-btn" onclick="openUpdateTodo('${todo._id}')"><i class="fas fa-edit"><span>Edit</span></i></button>
+              <button style="display:none;" id='post-btn-3-${todo._id}' class="post-btn" onclick="closeUpdateTodo('${todo._id}')"><i class="fas fa-times"><span>Close</span></i></button>
+            </div>
+          </div>
+          <div class="content-container">
+          <p id="p-el-${todo._id}" style="height:95px;" class="post-txt">${todo.content}</p>
+          <button class="done-btn" id="todo-done-${todo._id}" onclick="todoDone('${todo._id}','${todo.title}','${todo.content}','${todo.date}','${todo.done}')">Undo</button>
+          </div>
+         <div style='display:none' id="update-todo-container-${todo._id}" class="update-todo-container">
+         <form onsubmit="updateTodo('${todo._id}'); return false;">
+         <br><label>Title</label><br>
+         <input id="update-todo-'${todo._id}'-title">
+         <br><label>Comment</label><br>
+         <textarea style="min-height:70px" id="update-todo-'${todo._id}'-content"></textarea>
+         <br><label>Date</label><br>
+         <input type="date" id="update-todo-'${todo._id}'-date"/>
+         <button class='done-btn' type="submit">Update</button>
+         </form>
+        </div>
+        </div>`
+    )//the form above this is the form for update that is not displayed until the edit-button is clicked on
+    //making the array look like a list without the ,
+    .join("");
+
 };
 
 
@@ -229,9 +285,36 @@ window.addEventListener("load", () => {
 
 //FUNCTION - MARKED TODO DONE
 //the done-button does some changes to the design when clicked on and takes back the changes when clicked again
-const todoDone = (id) => { 
-  var element = document.getElementById(`doneTodo${id}`)
-  element.classList.toggle("post-done-mode");
+const todoDone = async (id, title, content, date, done) => {  
+  //  if (!done){
+  //    done = true;
+  //  }else {
+  //    done = false;
+  //  }
+  console.log("vad är done:" + done)
+     switch (done){
+     case !done : done = true;
+     break;
+     case done : done = false;
+     break;
+     default: console.log("hej")
+   } 
+
+ const todo = {    
+  title,
+  content,
+  date,
+  done,              
+};
+const res = await fetch(`${rootUrl}updatedone/${id}`, {
+  method: "put",
+  body: JSON.stringify(todo),
+  headers: requestHeaders,
+});
+const data = await res.json();
+//once again updating the feed with all the new todos
+getTodos();
+showResponseMessage(data.message);
 }
 
 /********************* POST SECTION ENDS *********************/

@@ -15,6 +15,10 @@ required: true
 date: {
 type: String,
 required: true
+},
+done: {
+type: Boolean, 
+default: false
 }
 })
 //exporting to make the schema public and accessible ouside of this module
