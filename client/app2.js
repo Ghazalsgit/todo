@@ -275,7 +275,7 @@ window.addEventListener("load", () => {
 //the done-button does some changes to the design when clicked on and takes back the changes when clicked again
 let done = false;
 const todoDone = (id) => { 
-  if (!done){
+  if (done === false){
   document.getElementById(`doneTodo${id}`).style.opacity = "0.6";
   document.getElementById(`todo-done-${id}`).innerHTML = `<p>Undo</p>`;
   document.getElementById(`h3-el-${id}`).style.textDecoration = "line-through";

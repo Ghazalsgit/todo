@@ -27,7 +27,7 @@ app.use(express.static(path.join(__dirname, "client")));
 mongoose.connect(
   //1: connectionstring(can find on mongo db website,including the password),
   process.env.MONGODB_URI,
-  //2: optionsobject: has 3 properties (booleans) that are needed fot the db to function 
+  //2: optionsobject: has 3 properties (booleans) that are needed for the db to function 
   { useNewUrlParser: true, useUnifiedTopology: true, autoIndex: true}, 
   //3: callback that will logg the message when connected to db
   () => console.log("Connected to db")

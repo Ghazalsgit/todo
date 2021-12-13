@@ -9,7 +9,7 @@ const transport = nodemailer.createTransport(
 
 const feedbackAddedEmail = (feedback) => {
     transport.sendMail({
-        from: "Todo <ghazalasaady@hotmail.com>",
+        from: "Todo <asaadyghazal@gmail.com>",
         to: `${feedback.name} <${feedback.email}>`,
         subject: "Feedback received",
         html: `<h1>Thank you for your feedback!</h1><br><h2 style = 'text-align: center;'>Dear ${feedback.name}</h2><br><p style = 'text-align: center;' >We truly value your feedback and the time you took to evaluate our website. We hope to be able to implement them in the next update.</p>`,
