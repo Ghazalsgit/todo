@@ -1,44 +1,5 @@
 document.querySelector("#post-wrapper").innerHTML = `<img src="https://zelly.se/wp-content/uploads/2021/06/loading-buffering.gif">`
 
-//FUNCTION - GET THE DAY
-const getTheDay = () => {
-  let date = new Date().getDate();
-  let month = new Date().getMonth();
-  let year = new Date().getFullYear();
-
-  let fullDate = ""; //converting the numbers returned to strings with a switch statement
-  switch (month) {
-    case 0: month = "January"
-    break;
-    case 1: month = "February"
-      break;
-    case 2: month = "Mars"
-      break;
-    case 3: month = "April"
-      break;
-    case 4: month = "May"
-      break;
-    case 5: month = "June"
-      break;
-    case 6: month = "July"
-      break;
-    case 7: month = "August"
-      break;
-    case 8: month = "September"
-      break;
-    case 9: month = "October"
-      break;
-    case 10: month = "November"
-      break;
-    case 11: month = "December"
-      break;
-  }
-  fullDate  = `${date} ${month} ${year}`
-  document.querySelector("#date-area").innerHTML = fullDate;
-}
-getTheDay();
-
-
 
 /********************* POST SECTION START *********************/
 
@@ -48,15 +9,14 @@ const rootUrl = "http://localhost:5000/api/";
 const requestHeaders = {"Content-type": "application/json",};
 //creates a new variable for our response as an empty array
 let todos = [];
-
-
 //get the elements for the new post section                          
-const newPostBtn = document.querySelector("#new-todo-btn");             //------ ÄNDRA NAMN PÅ # och const!!!
-const newPostOverlay = document.querySelector("#new-todo-overlay");     //------ ÄNDRA NAMN PÅ # och const!!!
-
-
+const newPostBtn = document.querySelector("#new-todo-btn");          
+const newPostOverlay = document.querySelector("#new-todo-overlay");   
 //lifting in the container for the message from the HTML file
 const messageContainer = document.getElementById("message-container-todo");
+
+
+//FUNCTION - RESPONSE MESSAGE
 //everytime the user makes a request a message will show up
 const showResponseMessage = (message) => {
   messageContainer.style.display = "flex"
@@ -68,22 +28,10 @@ const showResponseMessage = (message) => {
   setTimeout(() => {
   messageContainer.innerHTML = " ";
   messageContainer.style.display = "none"
-   
   }, 3000);
 }
 
 
-
-//response message                                                   
-// const showResponseMessage = (message) => {
-//   alert(message);
-  /* 
-  document.querySelector("#response-message").innerHTML = message;
-  setTimeout(() => {
-    document.querySelector("#response-message").innerHTML = "";
-  }, 2000);
-  */
-//};
 //FUNCTION - GET ALL TODOS
 const getTodos = async (todos) => {
   //creates a variable for the response
@@ -134,7 +82,7 @@ const getTodos = async (todos) => {
     //making the array look like a list without the ,
     .join(""); 
 };
-//.sort((todo,b)=> (todo.date > b.date ? 1 : -1))
+
 
 //FUNCTION - OPEN TODO MODAL
 const openNewTodoModal = () => {
@@ -142,10 +90,12 @@ const openNewTodoModal = () => {
   newPostOverlay.style.display = "flex";
 };
 
+
 //FUNCTION - CLOSING NEW POST MODAL
 const closeNewTodoModal = () => {
   newPostOverlay.style.display = "none";
 }
+
 
 //FUNCTION - NEW TODO
 const newTodo = async () => {
@@ -171,14 +121,15 @@ const newTodo = async () => {
   //updating with all the new todos
   getTodos();
   showResponseMessage(data.message);             
- // emptying the input fields after the todo is created 
+  // emptying the input fields after the todo is created 
   document.querySelector("#postSubject").value = "";        
   document.querySelector("#postMessage").value = "";      
   document.querySelector("#postDate").value = "";    
-
   closeNewTodoModal();
 };
 
+
+//FUNCTION - OPEN UPDATE 
 // when clicked on update/edit the content inside the post/todo is changed 
 const openUpdateTodo = (id) => {
   const container = document.getElementById(`update-todo-container-${id}`)
@@ -197,24 +148,24 @@ const openUpdateTodo = (id) => {
   btn_3.style.display = "flex" 
   const h = document.getElementById(`h-el-${id}`)
   h.style.display = "flex"
-/*setting the value(text inside) of the input fields the same as the value/innerHTML 
-of the todo-post */
+  /*setting the value(text inside) of the input fields the same as the value/innerHTML 
+  of the todo-post */
   document.getElementById(`update-todo-'${id}'-title`).value = h4.innerHTML
   document.getElementById(`update-todo-'${id}'-content`).value = p.innerHTML
   document.getElementById(`update-todo-'${id}'-date`).value = h3.innerHTML 
 }
 
-//FUNCTION - UPDATE
-//This function takes a parameter (id) that is collected from the onclick-event
+
+//FUNCTION - SENDING UPDATE
+//this function takes a parameter (id) that is collected from the onclick-event
 const updateTodo = async (id) => {
   //getting the values of input fields and setting them to different variables
   const title = document.getElementById(`update-todo-'${id}'-title`).value;           
   const content = document.getElementById(`update-todo-'${id}'-content`).value; 
   const date = document.getElementById(`update-todo-'${id}'-date`).value;
-
   document.getElementById(`update-todo-'${id}'-title`).innerHTML = document.getElementById(`h4-el-${id}`).value;
-  /* If the title,content or date is trufy, change it but if its not set its value to innerHTML 
-  that is already set*/                                                                                    //------ SKRIV TILL FÖR DATUM 
+  /* if the title,content or date is trufy, change it but if its not set its value to innerHTML 
+  that is already set*/                                                                                   
   const todo = {
     title: title ? 
     title 
@@ -226,8 +177,8 @@ const updateTodo = async (id) => {
     date 
     : document.getElementById(`h3-el-${id}`).innerHTML               
   };
-//fetching the URL for updateTodo and setting the method to put(update).
-//converting the data stored in DB to json and converting the data from the DB to javascript
+  //fetching the URL for updateTodo and setting the method to put(update).
+  //converting the data stored in DB to json and converting the data from the DB to javascript
   const res = await fetch(`${rootUrl}updatetodo/${id}`, {
     method: "put",
     body: JSON.stringify(todo),
@@ -239,6 +190,8 @@ const updateTodo = async (id) => {
   showResponseMessage(data.message);
 };
 
+
+//FUNCTION - CLOSE UPDATE
 //When clicked the update-design chenges back to normal
 const closeUpdateTodo = (id) => {
   document.getElementById(`update-todo-container-${id}`).style.display = "none"
@@ -250,6 +203,7 @@ const closeUpdateTodo = (id) => {
   document.getElementById(`post-btn-3-${id}`).style.display = "none"
   document.getElementById(`h-el-${id}`).style.display = "none"
 }
+
 
 //FUNCTION - DELETE
 //does the same thing as update-function above but instead of update it deletes the todo 
@@ -263,6 +217,7 @@ const deleteTodo = async (id) => {
   showResponseMessage(data.message);
 };
 
+
 //LISTENERS - FOR POST FUNCTIONS
 //when the window has been loaded
 window.addEventListener("load", () => {
@@ -272,34 +227,32 @@ window.addEventListener("load", () => {
   newPostBtn.addEventListener("click", openNewTodoModal);
 });
 
+//FUNCTION - MARKED TODO DONE
 //the done-button does some changes to the design when clicked on and takes back the changes when clicked again
 let done = false;
 const todoDone = (id) => { 
   if (!done){
-  document.getElementById(`doneTodo${id}`).style.opacity = "0.6";
-  document.getElementById(`todo-done-${id}`).innerHTML = `<p>Undo</p>`;
-  document.getElementById(`h3-el-${id}`).style.textDecoration = "line-through";
-  document.getElementById(`p-el-${id}`).style.textDecoration = "line-through";
-  document.getElementById(`h4-el-${id}`).style.textDecoration = "line-through";
-  done = true;
-}
-  else{
-  document.getElementById(`doneTodo${id}`).style.opacity = "1.0";
-  document.getElementById(`todo-done-${id}`).innerHTML = `<p>Done</p>`;
-  document.getElementById(`h3-el-${id}`).style.textDecoration = "none"
-  document.getElementById(`p-el-${id}`).style.textDecoration = "none";
-  document.getElementById(`h4-el-${id}`).style.textDecoration = "none"
-  done = false;
-}
+    document.getElementById(`doneTodo${id}`).style.opacity = "0.6";
+    document.getElementById(`todo-done-${id}`).innerHTML = `<p>Undo</p>`;
+    document.getElementById(`h3-el-${id}`).style.textDecoration = "line-through";
+    document.getElementById(`p-el-${id}`).style.textDecoration = "line-through";
+    document.getElementById(`h4-el-${id}`).style.textDecoration = "line-through";
+    done = true;
+  } else {
+    document.getElementById(`doneTodo${id}`).style.opacity = "1.0";
+    document.getElementById(`todo-done-${id}`).innerHTML = `<p>Done</p>`;
+    document.getElementById(`h3-el-${id}`).style.textDecoration = "none"
+    document.getElementById(`p-el-${id}`).style.textDecoration = "none";
+    document.getElementById(`h4-el-${id}`).style.textDecoration = "none"
+    done = false;
+  }
 }
 
 /********************* POST SECTION ENDS *********************/
 
 
 
-
 /********************* SEND FEEDBACK SECTION START *********************/
-
 
 //get the feedback elements
 const fbOverlay = document.querySelector("#feedback-overlay");
@@ -307,11 +260,13 @@ const fbModal = document.querySelector("#feedback-modal");
 const fbConfirmModal = document.querySelector("#feedback-confirmation-modal");
 const fbConfirmBody = document.querySelector("#feedback-confirmation-modal-body")
 
+
 //FUNCTION - OPEN FEEDBACK MODAL
 const openFeedbackModal = () => {
   //show the overlay
   fbOverlay.style.display = "flex";
 };
+
 
 //FUNCTION - CLOSE FEEDBACK MODAL
 const closeFeedbackModal = () => {
@@ -321,37 +276,9 @@ const closeFeedbackModal = () => {
   fbModal.style.display = "flex";
 }
 
-//FUNCTION - SENDING THE FEEDBACK
-/*
-const sendFeedback = () => {
-  //try to do this
-  try {
-    //collect the value of each input in the form
-    const name = document.querySelector("#name").value;
-    const email = document.querySelector("#email").value;
-    const message = document.querySelector("#message").value;
-    //testing
-    console.log(`Name: ${name},Email: ${email}, Message: ${message}, `)
-    //using setTimeOut to display the spinner before the text shows up
-    //setTimeout takes two arguments. One function and time in ms before the function should start
-    setTimeout( () => {
-      //render av thank you message in the html
-      fbConfirmBody.innerHTML = '<h2>Thank you for your feedback</h2>';
-      //
-    }, 2000);
-  //and if it doesn´t work = something wrong with the code
-  } catch (error) {
-    //show modal
-    fbConfirmBody.style.display = "flex";
-    //render an error message in the html
-    fbConfirmBody.innerHTML = '<h2>Sorry, something went wrong</h2><p>Please try again</p>';
-  }
-}*/
 
-
-//NEW FEEDBACK FUNCTION
+//FUNCTION - FEEDBACK FUNCTION
 const sendFeedback = async () => {
-
   try{
   //collecting inputs
   const name = document.querySelector("#name").value;
@@ -386,19 +313,10 @@ const sendFeedback = async () => {
         //render an error message in the html
         fbConfirmBody.innerHTML = '<h2>Sorry, something went wrong</h2><p>Please try again</p>';
   }
-  
-  
   //clear input fields
   document.querySelector("#name").value = "";
   document.querySelector("#email").value = "";
   document.querySelector("#message").value = "";
-
-/*
-
-  LÄGG IN OCH JUSTERA MESSAGECONFIRMATION
-
-*/
-  //closeFeedbackModal();
 };
 
 
@@ -409,6 +327,7 @@ const openMessageConfirmation = () => {
   //show the confirmation modal
   fbConfirmModal.style.display = "flex";
 }
+
 
 //FUNCTION - CLOSING THE CONFIRMATION MODAL
 const closeMessageConfirmation = () => {
@@ -429,7 +348,49 @@ const closeMessageConfirmation = () => {
 
 
 
+/********************* EXTRA FUNCTIONS STARTS *********************/
 
+//FUNCTION - GET THE DAY
+const getTheDay = () => {
+  let date = new Date().getDate();
+  let month = new Date().getMonth();
+  let year = new Date().getFullYear();
+
+  let fullDate = ""; 
+  //converting the numbers returned to strings with a switch statement
+  switch (month) {
+    case 0: month = "January"
+    break;
+    case 1: month = "February"
+      break;
+    case 2: month = "Mars"
+      break;
+    case 3: month = "April"
+      break;
+    case 4: month = "May"
+      break;
+    case 5: month = "June"
+      break;
+    case 6: month = "July"
+      break;
+    case 7: month = "August"
+      break;
+    case 8: month = "September"
+      break;
+    case 9: month = "October"
+      break;
+    case 10: month = "November"
+      break;
+    case 11: month = "December"
+      break;
+  }
+  fullDate  = `${date} ${month} ${year}`
+  document.querySelector("#date-area").innerHTML = fullDate;
+}
+getTheDay();
+
+
+//FUNCTION - GET IP ADRESS
 /* getting the IP address of the user and storing the lat, lot and location in different variables
 the fetchWeather function is a callback function with a parameter/argument that runs when the IP is ready
 it also "gets" the variables so that they can be used outside of the scope*/
@@ -441,6 +402,9 @@ const getIpAddress = async () => {
   const location = data.location.city;
   fetchWeather(lat, lon, location)
 };
+
+
+//FUNCTION  - GET WEATHER
 /* the arguments are lifted in fron the function above. Fetching the weather for the users location
 with the help of the IP address*/
 async function fetchWeather(lat, lon, location) {
@@ -449,5 +413,7 @@ async function fetchWeather(lat, lon, location) {
   const deg = Math.floor(data.main.temp); //returns the largest integer less than or equal to a given number
   document.getElementById("weather-container").innerHTML = `Location: ${location} <br> Temperature: ${deg} °C`;
 }
-
 getIpAddress();
+
+
+/********************* EXTRA FUNCTIONS ENDS *********************/
