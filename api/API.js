@@ -163,7 +163,7 @@ router.put("/updatedone/:id", (req, res) => {
         .status(200)
         .json({
           message: {
-            msgBody: "Todo successfully update", 
+            msgBody: "Todo successfully updated", 
             msgError: false,
           },
         });
