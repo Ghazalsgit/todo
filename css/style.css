@@ -1,30 +1,22 @@
-/*
-************************* INFO OM HUR JAG LAGT UPP KODEN ******************************
-
-- Koden är upplagd enligt mobile-first, så därför behöver justeringar för desktop 
-  ligga i Media Queries efter varje sektion för tydlighet
-- Jobba gärna med col- klasser för bredd på containers, se mer nedan
-- Svenska kommentarer är "arbetskommentarer" och ska tas bort vid inlämning
-- Engelska kommentarer är permanenta och ska vara kvar vid inlämning
-- Jag har lagt in en länk till FontAwesome också så det är fritt fram att lägga in symboler
-
-*********************************************************************************
-*/
-
 /********** GENERAL STYLING **********/
 
 /* Nya fonten som jag använder */
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap');
 
 * {
-  box-sizing: border-box; /*alla "boxar" blir måtten man faktiskt skriver inkl padding/border/marginal*/
-  margin: 0; /*tar bort förinställd marginal*/
-  padding: 0; /*tar bort förinställd padding*/
+  box-sizing: border-box; 
+  margin: 0; 
+  padding: 0; 
 }
 body {
-background-color: rgb(253, 247, 242);
-font-family: 'Playfair Display',Arial, Helvetica, sans-serif;
+  background-color: rgb(253, 247, 242);
+  font-family: 'Playfair Display',Arial, Helvetica, sans-serif;
 }
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  }
 [class*="col-"]{
   width: 95%;
 }
@@ -42,75 +34,73 @@ font-family: 'Playfair Display',Arial, Helvetica, sans-serif;
   .col-11 {width: 91.66%;}
   .col-12 {width: 100%;}
 }
-/*
-******************* FÖRKLARING HUR MAN JOBBAR MED COL- KLASSER **********************
-istället för att sätta bredder på containers som ska bli fullbredd i movbilvy 
-lägg till en col-[siffra] class i html
-då blir bredden lättare flexibel mellan mobil/desktop
-alltså, en col-6 som klass på ett element ger 50% bredd i desktop och automatiskt 100% bredd i mobil
-*/
+
+
+/**************** TOP IMAGE ****************/
 
 .top-image-wrapper {
-position: fixed;
-display: flex;
-flex-direction: column;
-justify-content: flex-end;
-width: 100%;
-height: 30vh;
-z-index: 1;
-background-image: url("../img/beigee.jpeg");
-background-size: cover;
-box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  width: 100%;
+  height: 30vh;
+  z-index: 1;
+  background-image: url("../img/beigee.jpeg");
+  background-size: cover;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
 }
 .top-image-text-wrapper {
-padding: 15px 0 15px 15px;
+  padding: 15px 0 15px 15px;
 }
 .top-image-text-wrapper p{
-margin-top: 10px;
+  margin-top: 10px;
 }
 
 @media screen and (min-width:800px){
-.top-image-text-wrapper {
-  background: linear-gradient(to top,  rgba(255, 255, 255, 1) 0%, rgba(233, 233, 233, 0) 100%);
-}
-}
-main {
-display: flex;
-flex-direction: column;
-align-items: center;
+  .top-image-text-wrapper {
+    background: linear-gradient(to top,  rgba(255, 255, 255, 1) 0%, rgba(233, 233, 233, 0) 100%);
+  }
 }
 
 
 /**************** SHOWING POSTS STARTS ****************/
+
 .post-section { /*hela sektionen med posts*/
-margin-top: 30vh;
-padding-top: 20px;
-margin-bottom: 50px;
+  margin-top: 30vh;
+  padding-top: 20px;
+  margin-bottom: 50px;
 }
 .post-section h2 { /*postens rubrik*/
-margin: 3% 5%;
-font-size: 22px;
-/*color: white;*/
+  margin: 3% 5%;
+  font-size: 22px;
 }
 #post-wrapper { /*wrapper för alla posts*/
-display: flex;
-justify-content: center;
-align-items: flex-start;
-flex-wrap: wrap;
-gap: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 5px;
 }
 .post { /*hela varje post*/
-width: 100%;
-padding: 10px;
-background-color: #F8E2CF;
-border: 1px solid silver;
-border-radius: 10px;
-box-shadow: rgba(17, 17, 26, 0.1) 0px 0px 16px;
-display: flex;
-flex-direction: column;
-justify-content: space-evenly;
-margin: 3px;
+  width: 100%;
+  padding: 10px;
+  background-color: #F8E2CF;
+  border: 1px solid silver;
+  border-radius: 10px;
+  box-shadow: rgba(17, 17, 26, 0.1) 0px 0px 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  margin: 3px;
 }
+.post-done-mode{
+  opacity: 0.6;
+  text-decoration: line-through;
+}
+
+
+
 .post:hover{
   transform: scale(1.02);
 }
@@ -131,86 +121,70 @@ form button:hover {
   color: white;
 }
 .post-header { /*postens header*/
-display: flex;
-justify-content: space-between;
-padding-bottom: 5px;
-border-bottom: 1px solid black;
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 5px;
+  border-bottom: 1px solid black;
 }
 .post-header h3 { /*postens rubrik*/
-font-size: 16px;
-
+  font-size: 16px;
 }
 .post-btn-wrapper { /*wrapper för edit/delete knappar*/
-display: flex;
-gap: 5px;
+  display: flex;
+  gap: 5px;
 }
 .post-btn { /*edit/delete knapparna*/
-position: relative;
-display: flex;
-justify-content: flex-end;
-gap: 5px;
-padding: 5px;
-border: 0;
-background-color: transparent;
-font-size: 16px;
+  position: relative;
+  display: flex;
+  justify-content: flex-end;
+  gap: 5px;
+  padding: 5px;
+  border: 0;
+  background-color: transparent;
+  font-size: 16px;
 }
 .post-btn span { /*tooltipen med förklarande text till edit/deleteknapparna*/
-visibility: hidden;
-position: absolute;
-  bottom: 120%;
-  left: -30%;
-display: flex;
-justify-content: center;
-align-items: center;
-padding: 10px;
-background-color: black;
-opacity: 0;
-border: 1px solid black;
-border-radius: 5px;;
-color: white;
-font-family: 'Playfair Display',Arial, Helvetica, sans-serif;
-font-weight: normal;
-font-size: 12px;;
-transition: 0.5s;
+  visibility: hidden;
+  position: absolute;
+    bottom: 120%;
+    left: -30%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  background-color: black;
+  opacity: 0;
+  border: 1px solid black;
+  border-radius: 5px;;
+  color: white;
+  font-family: 'Playfair Display',Arial, Helvetica, sans-serif;
+  font-weight: normal;
+  font-size: 12px;;
+  transition: 0.5s;
 }
-
 .post-btn:hover span { /*hover på edit/delete knapparna som gör att tooltipen visas*/
-visibility: visible;
-opacity: 1;
+  visibility: visible;
+  opacity: 1;
 }
 .post-btn span::before { /*den lilla "pilen" på tooltipen*/
-content: "";
-position: absolute;
-  top: 100%;
-  left: 30%;
-margin-left: -5px;
-border-width: 8px;
-border-style: solid;
-border-color: black transparent transparent transparent;
+  content: "";
+  position: absolute;
+    top: 100%;
+    left: 30%;
+  margin-left: -5px;
+  border-width: 8px;
+  border-style: solid;
+  border-color: black transparent transparent transparent;
 }
 .post-txt { /*varje posts text*/
-padding: 10px 0;
-word-break:normal;
-resize: both;
-
+  padding: 10px 0;
+  word-break:normal;
+  resize: both;
 }
 .word-break{
   word-break: break-all;
 }
-
-@media screen and (min-width:800px){
-.post { /*hela varje post*/
-  width: 300px;
-  min-height: 230px;
-  
-}
-#post-wrapper { /*wrapper för alla posts*/
-  margin: 0;
-  justify-content: space-around;
-}
-}
-/* The button for "Done"*/
-.done-btn{
+.done-btn{/* The button for "Done"*/
   width: 70px;
   height: 35px;
   margin-top:1.2em;
@@ -219,19 +193,31 @@ resize: both;
   background-color: #F5C6AA; 
   font-weight: 600;
 }
-/* Hover the button for "Done"*/
-.done-btn:hover{
+.done-btn:hover{/* Hover the button for "Done"*/
   border: 1px solid white;
   border-radius: 6px;
   background-color: black;
   color: white;
-
 }
+
+@media screen and (min-width:800px){
+  .post { /*hela varje post*/
+    width: 300px;
+    min-height: 230px;
+  }
+  #post-wrapper { /*wrapper för alla posts*/
+    margin: 0;
+    justify-content: space-around;
+  }
+}
+
+
 /******************** UPDATE TODO CONTAINER *****************/
+
 .update-todo-container{
- flex-direction: column;
- justify-content: space-evenly;
- align-items: center;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
 }
 .content-container{
   display: flex;
@@ -241,42 +227,31 @@ resize: both;
 }
 
 
-/**************** SHOWING POSTS STARTS ****************/
-
-
-
 /**************** NEW POST SECTION STARTS ****************/
-@media screen and (max-width:800px){
-  .new-todo-btn{
-    position: absolute;
-    top: 5%;
-  } 
-}
 
 .new-todo-btn { /*plusset knappen för ny post*/
-position: fixed;
-width: 160px;
-height: 60px;
-bottom: 7%;
-right: 20px;  
-padding: 15px;
-display: flex;
-justify-content: center;
-align-items: center;
-background-color: rgb(245, 196, 168);
-border-radius: 9px;
-border: solid 2px rgb(255, 255, 255);
-color: black;
-font-size: 13px;
-font-weight: 700;
-text-align: center;
-z-index: 1;
-cursor: pointer;
-animation-name: popup;
-animation-duration: 3s;
-
-animation-iteration-count: infinite;
-}
+  position: fixed;
+  width: 160px;
+  height: 60px;
+  bottom: 7%;
+  right: 20px;  
+  padding: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(245, 196, 168);
+  border-radius: 9px;
+  border: solid 2px rgb(255, 255, 255);
+  color: black;
+  font-size: 13px;
+  font-weight: 700;
+  text-align: center;
+  z-index: 1;
+  cursor: pointer;
+  animation-name: popup;
+  animation-duration: 3s;
+  animation-iteration-count: infinite;
+  }
 @keyframes popup {
   0% {
     transform: scale(0.95);
@@ -298,224 +273,226 @@ animation-iteration-count: infinite;
   color: white;
 }
 #new-todo-overlay { /*overlay för new post modalens*/
-display: none;
-flex-direction: column;
-align-items: center;
-justify-content: center;
-position: fixed;
-  top: 0;
-  left: 0;
-width: 100%;
-height: 100vh;
-background-color: rgb(253, 247, 242, 0.95);
-z-index: 100000;
-
-z-index: 2;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+    top: 0;
+    left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: rgb(253, 247, 242, 0.95);
+                                    
+  z-index: 2;
 }
 .new-post-modal { /*hela new post modalen*/
-background-color: white;
+  background-color: white;
 }
 .new-post-modal-header{ /*new post modalens header*/
-display: flex;
-justify-content: space-between;
-align-items: center;
-width: 100%;
-padding: 15px;
-background-color: #F8E2CF;
-border-bottom: 1px solid black;
-border-top-right-radius: 6px;
-border-top-left-radius: 6px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 15px;
+  background-color: #F8E2CF;
+  border-bottom: 1px solid black;
+  border-top-right-radius: 6px;
+  border-top-left-radius: 6px;
 }
 .new-post-modal-header span { /*closing krysset*/
-cursor: pointer;
-text-transform: uppercase;
+  cursor: pointer;
+  text-transform: uppercase;
 }
 
 /* new post form*/
 .form-new-post { /*hela formuläret*/
-display: flex;
-flex-direction: column;
-gap: 10px;
-padding: 10px;
-background-color: #F8E2CF;
-border-bottom-left-radius: 6px;
-border-bottom-right-radius: 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 10px;
+  background-color: #F8E2CF;
+  border-bottom-left-radius: 6px;
+  border-bottom-right-radius: 6px;
 }
 .form-new-post input { /*inputfälten*/
-padding: 10px;
+  padding: 10px;
 }
 .form-new-post textarea { /*det stora textfältet*/
-height: 150px;
-padding: 10px;
+  height: 150px;
+  padding: 10px;
 }
 .form-btn-wrapper{ /*wrapper för reset/submit knappar*/
-display: flex;
-justify-content: flex-end;
-gap: 15px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 15px;
 }
 .form-btn { /*reset/submit knapparna*/
-cursor: pointer;
+  cursor: pointer;
 }
-
-/**************** NEW POST SECTION END ****************/
-
+@media screen and (max-width:800px){
+  .new-todo-btn{
+    position: absolute;
+    top: 5%;
+  } 
+}
 
 
 /**************** FEEDBACK SECTION START ****************/
+
 .feedback-section {
-display: flex;
-justify-content: center;
+  display: flex;
+  justify-content: center;
 }
 #feedback-btn { /*hela feedbacken*/
-position: fixed;
-bottom: 0;
-width: 70%;
-margin-top: 20px;
-padding: 5px;
-background-color: rgb(245, 196, 168);
-border-top-left-radius: 10px;
-border-top-right-radius: 10px;
-border: 2px solid white;
-color: black;
-text-align: center;
-text-transform: uppercase;
+  position: fixed;
+  bottom: 0;
+  width: 70%;
+  margin-top: 20px;
+  padding: 5px;
+  background-color: rgb(245, 196, 168);
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  border: 2px solid white;
+  color: black;
+  text-align: center;
+  text-transform: uppercase;
 }
 #feedback-btn:hover{
   background-color: black;
   color: white;
-width: 5%;
-display: flex;
-justify-content: center;
-align-items: center;
+  width: 5%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 @media screen and (min-width:800px){
-#feedback-btn { /*feedback knappen*/
-  position: fixed;
-    left: 0;
-    bottom: 5%;
-  height: 150px;
-  width: 30px;
-  border-top-left-radius: 0;
-  border-top-right-radius: 10px;
-  border-bottom-right-radius: 10px;
-  writing-mode: vertical-rl;
-  letter-spacing: 1.5px;
-  cursor: pointer;
-}
+  #feedback-btn { /*feedback knappen*/
+    position: fixed;
+      left: 0;
+      bottom: 5%;
+    height: 150px;
+    width: 30px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    writing-mode: vertical-rl;
+    letter-spacing: 1.5px;
+    cursor: pointer;
+  }
 }
 
 /*feedback modal*/
 #feedback-overlay { /*feedbackens overlay, både form-modalen och confirmation ligger här*/
-display: none;
-flex-direction: column;
-align-items: center;
-justify-content: center;
-position: fixed;
-  top: 0;
-  left: 0;
-width: 100%;
-height: 100vh;
-background-color: rgb(253, 247, 242, 0.95);
-z-index: 2;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+    top: 0;
+    left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: rgb(253, 247, 242, 0.95);
+  z-index: 2;
 }
 #feedback-modal { /*hela feedback modalen*/
-display: flex;
-flex-direction: column;
-background-color: #F8E2CF;
-border-radius: 6px;
+  display: flex;
+  flex-direction: column;
+  background-color: #F8E2CF;
+  border-radius: 6px;
 }
 .feedback-modal-header{ /*feedback modalens header*/
-display: flex;
-justify-content: space-between;
-align-items: center;
-width: 100%;
-padding: 15px;
-background-color: #F8E2CF;
-border-bottom: 1px solid black;
-border-top-left-radius: 6px;
-border-top-right-radius: 6px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 15px;
+  background-color: #F8E2CF;
+  border-bottom: 1px solid black;
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
 }
 .feedback-modal-header span { /*closing krysset*/
-cursor: pointer;
-text-transform: uppercase;
+  cursor: pointer;
+  text-transform: uppercase;
 }
-
 
 /*feedback form */
 .form-feedback { /*hela feedback formuläret*/
-display: flex;
-flex-direction: column;
-gap: 10px;
-margin: 20px;
-padding: 20px;
-border: 1px solid black;
-background-color: #F8E2CF;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 20px;
+  padding: 20px;
+  border: 1px solid black;
+  background-color: #F8E2CF;
 }
 .form-feedback input { /*inputfälten*/
-padding: 10px;
+  padding: 10px;
 }
 .form-feedback textarea { /*stora textrutan*/
-height: 150px;
-padding: 10px;
+  height: 150px;
+  padding: 10px;
 }
 .form-btn-wrapper{ /*wrapper för reset/submit knappar*/
-display: flex;
-justify-content: flex-end;
-gap: 15px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 15px;
 }
 .form-btn { /*reset/submit knappar*/
-padding: 10px 20px;
-cursor: pointer;
-background-color: #F5C6AA;
-border: 2px solid white;
-color: black;
-font-weight: 600;
-border-radius: 6px;
+  padding: 10px 20px;
+  cursor: pointer;
+  background-color: #F5C6AA;
+  border: 2px solid white;
+  color: black;
+  font-weight: 600;
+  border-radius: 6px;
 }
 
 /*feedback confirmation modal*/
 #feedback-confirmation-modal { /*hela modalen feedback confirmation modalen */
-height: 50%;
-display: none;
-align-items: center;
-flex-direction: column;
-background-color: #F8E2CF;
-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23); 
-color: black;
-z-index: 4;
+  height: 50%;
+  display: none;
+  align-items: center;
+  flex-direction: column;
+  background-color: #F8E2CF;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23); 
+  color: black;
+  z-index: 4;
 }
 .feedback-confirmation-modal-header { /*modalens header*/
-display: flex;
-justify-content: flex-end;
-align-items: center;
-width: 100%;
-padding: 15px;
-background-color: #F8E2CF;
-border-bottom: 1px solid black;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  width: 100%;
+  padding: 15px;
+  background-color: #F8E2CF;
+  border-bottom: 1px solid black;
 }
 .feedback-confirmation-modal-header span { /*modalens close*/
-cursor: pointer;
-text-transform: uppercase;
+  cursor: pointer;
+  text-transform: uppercase;
 }
 #feedback-confirmation-modal-body { /*modalens content del där spinner/js visas*/
-display: flex;
-width: 100%;
-height: 100%;
-justify-content: center;
-align-items: center;
+  display: flex;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
 }
 .modal-loader { /*spinnern*/
-width: 50px;
-height: 50px;
-color: black;
-font-size: 40px;;
-border: 0;
-background-color: transparent;
-border-radius: 50%;
-animation-name: spin;
-animation-duration: 3s;
-animation-iteration-count: infinite;
-animation-timing-function: linear;
+  width: 50px;
+  height: 50px;
+  color: black;
+  font-size: 40px;;
+  border: 0;
+  background-color: transparent;
+  border-radius: 50%;
+  animation-name: spin;
+  animation-duration: 3s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
 }
 @keyframes spin { /*gör att spinnern snurrar*/
 from {
@@ -526,16 +503,14 @@ to {
 }
 }
 #feedback-confirmation-modal-body h2 { /*stora texten som visas i modalen*/
-text-transform: uppercase;
+  text-transform: uppercase;
 }
 #feedback-confirmation-modal-body p { /*lilla texten som visas i modalen*/
-margin: 10px 0 0 0;
+  margin: 10px 0 0 0;
 }
-/**************** FEEDBACK SECTION END ****************/
 
 
 /**************** CONFIRMATION/ERROR MESSAGE ****************/
-
 
 #message-container-todo{ 
   position: fixed;

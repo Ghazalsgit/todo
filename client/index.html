@@ -29,6 +29,7 @@
           <!-- render from js -->
         </div>
       </section> 
+
       <!-- new post section-->
       <section class="new-post-section">
         <!-- the new post button -->
@@ -43,25 +44,25 @@
               <span id="closing-btn" onclick="closeNewTodoModal()"><i class="fas fa-times"></i></span>
             </div> 
             <!--the new post form start-->
-            <form class="form-new-post" onsubmit="newTodo(); return false;"><!--on submit -->
-              
+            <form class="form-new-post" onsubmit="newTodo(); return false;">          
               <input id="postSubject" type="text" placeholder="Title"/>
               <textarea id="postMessage" placeholder="Comment..." required></textarea>
               <input id="postDate" type="date" placeholder="Date"/>
-
               <div class="form-btn-wrapper">
                 <button class="form-btn" type="reset">Reset <i class="far fa-trash-alt"></i></button>
                 <!--button below triggs the function postPost -->
                 <button id="post-post" class="form-btn" type="submit">Add <i class="fas fa-plus"></i></button>
               </div>
-
             </form>
           </div>
         </div>
       </section>
- <div id="todo-update-container">
- 
-</div>
+
+      <div id="todo-update-container">
+      <!-- render from js -->
+      </div>
+
+
       <!-- feedback section -->
       <section class="feedback-section">
         <!-- the feedback button triggs the function openFeedbackModal-->
@@ -102,6 +103,6 @@
 
 
     </main>
-    <script src="./app2.js" async defer></script>
+    <script src="./app.js" async defer></script>
   </body>
 </html>

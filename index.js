@@ -3,7 +3,7 @@
 
 //lifting in express
 const express = require("express");
-//Calls the express function "express()" and puts new Express application inside the app variable (to start a new Express application)
+//calls the express function "express()" and puts new Express application inside the app variable (to start a new Express application)
 const app = express();
 //lifting in mongoose.
 const mongoose = require("mongoose");

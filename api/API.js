@@ -1,15 +1,15 @@
 //Our API
 
-//lyfter in express
+//gets express
 const express = require("express");
-//Creating our souter that helps us connect our server to the API
+//creating our souter that helps us connect our server to the API
 const router = express.Router();
 //lifting in the model/schema from the models module
 const Todo = require("../models/Todo");
 //lifting in the feedback model/schema as well
 const Feedback = require("../models/Feedback");               
-//const { feedbackEmail } = require("../services/EmailService");     //**************************EJ ONLINE!!!!
-const { feedbackAddedEmail } = require("../servicesG/EmailServices") //**************************EJ ONLINE!!!!
+//const { feedbackEmail } = require("../services/EmailService");    
+const { feedbackAddedEmail } = require("../servicesG/EmailServices") 
 
 //NEW TODO
 //.post(2 arguments; the endpoint, callbackfunction (holds request and response))
@@ -135,8 +135,8 @@ router.delete("/deletetodo/:id", (req, res) => {
   });
 });
 
-//****************************FEEDBACK*****************************/ 
-//**************************EJ ONLINE!!!!          
+
+//****************************FEEDBACK*****************************/         
 
 //SEND FEEDBACK
 //.post(2 arguments; the endpoint, callbackfunction (holds request and response))
@@ -165,23 +165,15 @@ router.post("/feedback", (req, res) => {
         });
       //if everything goes fine
     } else {
-      //and then we send an email to the user         //**************************EJ ONLINE!!!!
- feedbackAddedEmail(req.body);
- res.status(201).json({
-   msgBody: "Feedback has been sent",
-   msgError: false,
- })
+      //and then we send an email to the user
+      feedbackAddedEmail(req.body);
+      res.status(201).json({
+        msgBody: "Feedback has been sent",
+        msgError: false,
+      })
     }
   });
 });
-
-// ghazals email
-
-// feedbackAddedEmail(req.body);
-// res.status(201).json({
-//   msgBody: "Feedback has been sent",
-//   msgError: false,
-// })
 
 
 //router is being public and exported outside of this module
