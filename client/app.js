@@ -42,14 +42,14 @@ const getTodos = async (todos) => {
   //collects the data in our array
   todos = data.todos;
 
-  /******* NYTT ************/ 
+  //filter based on if done is true/false and collect the results in two new arrays
   const todosDone = todos.filter(todo => todo.done === true);
   const todosNotDone = todos.filter(todo => todo.done === false);
+  //testing
   console.log("Done")
   console.log(todosDone)
   console.log("Not done")
   console.log(todosNotDone)
-
 
   //render the data in html
   document.querySelector("#post-wrapper").innerHTML = todosNotDone.sort((todo,b)=> (todo.date > b.date ? 1 : -1)) //sort() sorts the todos based on the date
@@ -92,9 +92,6 @@ const getTodos = async (todos) => {
     )//the form above this is the form for update that is not displayed until the edit-button is clicked on
     //making the array look like a list without the ,
     .join(""); 
-
-  /**************** NYTT NEDAN *****************/ 
-  /* Mappar ut de todos som filtrerats till todosDone i en egen wrapper */
 
   //render the data in html
   document.querySelector("#post-wrapper2").innerHTML = todosDone.sort((todo,b)=> (todo.date > b.date ? 1 : -1)) //sort() sorts the todos based on the date

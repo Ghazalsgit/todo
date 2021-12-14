@@ -18,7 +18,7 @@ router.post("/newtodo", (req, res) => {
   console.log(req.body);
   //creating a variable newTodo that holds our data according to the Todo-model
   //using the req.body to creat a new document
-  //Todo takes an object (the data) that it will use for creating new todos
+  //todo takes an object (the data) that it will use for creating new todos
   const newTodo = new Todo({
       title: req.body.title,
       content: req.body.content, 
@@ -146,7 +146,7 @@ router.put("/updatedone/:id", (req, res) => {
     title: req.body.title, 
     content: req.body.content,
     date: req.body.date,
-    done: req.body.done, //DENNA ÄR NY!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    done: req.body.done, 
   }, 
     (err) => {
     if (err) {

@@ -1,6 +1,5 @@
 /********** GENERAL STYLING **********/
 
-/* Nya fonten som jag använder */
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap');
 
 * {
@@ -65,8 +64,10 @@ main {
 
 
 /**************** SHOWING POSTS STARTS ****************/
+
 .posts-title {
   padding: 15px;
+  font-size: 14px;
 }
 
 .post-section { /*hela sektionen med posts*/
@@ -128,15 +129,18 @@ main {
   align-items: center;
   font-size: 80px;
   color: white;
+  border-radius: 9px;
 }
 .post2 button {
   z-index: 1;
 }
-
+/*                                            DEN HÄR HAR VI INTE KVAR VA??
 .post-done-mode{
   opacity: 0.6;
   text-decoration: line-through;
 }
+*/
+
 .post:hover{
   transform: scale(1.02);
 }
@@ -178,6 +182,7 @@ form button:hover {
   border: 0;
   background-color: transparent;
   font-size: 16px;
+  transition: 0.5s;
 }
 .post-btn2{
   display: none;
@@ -231,6 +236,7 @@ form button:hover {
   border-radius: 6px;
   background-color: #F5C6AA; 
   font-weight: 600;
+  transition: 0.5s;
 }
 .done-btn:hover{/* Hover the button for "Done"*/
   border: 1px solid white;
@@ -240,11 +246,11 @@ form button:hover {
 }
 
 @media screen and (min-width:800px){
-  .post, .post2 { /*hela varje post*/                                         /**************************** LÄGG IN .post2 här med*/
+  .post, .post2 { /*hela varje post*/                                        
     width: 300px;
     min-height: 230px;
   }
-  #post-wrapper, #post-wrapper2 { /*wrapper för alla posts*/                /**************************** LÄGG IN #post-wrapper2 här med*/
+  #post-wrapper, #post-wrapper2 { /*wrapper för alla posts*/                
     margin: 0;
     justify-content: space-around;
   }
@@ -290,6 +296,7 @@ form button:hover {
   animation-name: popup;
   animation-duration: 3s;
   animation-iteration-count: infinite;
+  transition: 0.5s;
   }
 @keyframes popup {
   0% {
@@ -368,6 +375,7 @@ form button:hover {
 }
 .form-btn { /*reset/submit knapparna*/
   cursor: pointer;
+  transition: 0.5s;
 }
 @media screen and (max-width:800px){
   .new-todo-btn{
@@ -396,6 +404,7 @@ form button:hover {
   color: black;
   text-align: center;
   text-transform: uppercase;
+  transition: 0.5s;
 }
 #feedback-btn:hover{
   background-color: black;
@@ -487,6 +496,7 @@ form button:hover {
   color: black;
   font-weight: 600;
   border-radius: 6px;
+  transition: 0.5s;
 }
 
 /*feedback confirmation modal*/
