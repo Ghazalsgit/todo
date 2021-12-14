@@ -134,12 +134,6 @@ main {
 .post2 button {
   z-index: 1;
 }
-/*                                            DEN HÄR HAR VI INTE KVAR VA??
-.post-done-mode{
-  opacity: 0.6;
-  text-decoration: line-through;
-}
-*/
 
 .post:hover{
   transform: scale(1.02);

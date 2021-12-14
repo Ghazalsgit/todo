@@ -34,7 +34,6 @@ const showResponseMessage = (message) => {
 
 //FUNCTION - GET ALL TODOS
 const getTodos = async (todos) => {
-  console.log("Renderar ut på nytt med getTodos")
   //creates a variable for the response
   const res = await fetch(`${rootUrl}gettodos`);
   //takes the response that we get and converts it to js object
@@ -45,12 +44,7 @@ const getTodos = async (todos) => {
   //filter based on if done is true/false and collect the results in two new arrays
   const todosDone = todos.filter(todo => todo.done === true);
   const todosNotDone = todos.filter(todo => todo.done === false);
-  //testing
-  console.log("Done")
-  console.log(todosDone)
-  console.log("Not done")
-  console.log(todosNotDone)
-
+ 
   //render the data in html
   document.querySelector("#post-wrapper").innerHTML = todosNotDone.sort((todo,b)=> (todo.date > b.date ? 1 : -1)) //sort() sorts the todos based on the date
     //mapping out every todo
