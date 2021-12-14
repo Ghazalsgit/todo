@@ -48,6 +48,7 @@ main {
   background-image: url("../img/beigee.jpeg");
   background-size: cover;
   box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  z-index: 2;
 }
 .top-image-text-wrapper {
   padding: 15px 0 15px 15px;
@@ -285,7 +286,7 @@ form button:hover {
   font-size: 13px;
   font-weight: 700;
   text-align: center;
-  z-index: 1;
+  z-index: 3;
   cursor: pointer;
   animation-name: popup;
   animation-duration: 3s;
@@ -399,6 +400,7 @@ form button:hover {
   text-align: center;
   text-transform: uppercase;
   transition: 0.5s;
+  z-index: 2;
 }
 #feedback-btn:hover{
   background-color: black;
